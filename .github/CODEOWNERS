@@ -1,0 +1,5 @@
+# Enforce reviewers for core areas
+# Format: <pattern> <owner1> <owner2>
+/src/ @maxjurreau-3
+/modules/ @maxjurreau-3
+/ARCHITECTURE.md @maxjurreau-3
