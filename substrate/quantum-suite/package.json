@@ -1,0 +1,20 @@
+{
+  "name": "@umbrella/quantum-suite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Quantum suite umbrella package (meta).",
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "quantum-auth",
+    "quantum-identity",
+    "quantum-signing",
+    "quantum-verification"
+  ],
+  "scripts": {
+    "test": "echo \"no tests\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
