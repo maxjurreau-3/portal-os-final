@@ -1,4 +1,5 @@
 // src/modules/xr/index.js
+import React from 'react';
 import EventBus from '../../runtime/event-bus.js';
 import { uid, nowISO } from '../shared/utils.js';
 
@@ -29,18 +30,20 @@ export const renderer = {
   id: 'xr',
   title: 'XR Engine',
   description: 'XR scenes and viewers.',
-  content: (
-    <div>
-      <p>XR engine active.</p>
-      <button
-        onClick={() => {
+  content: React.createElement(
+    'div',
+    null,
+    React.createElement('p', null, 'XR engine active.'),
+    React.createElement(
+      'button',
+      {
+        onClick: () => {
           const s = createScene({ createdBy: 'renderer' });
           EventBus.emit('notify', `XR scene ${s.id} created`);
-        }}
-      >
-        Create XR Scene
-      </button>
-    </div>
+        }
+      },
+      'Create XR Scene'
+    )
   )
 };
 
