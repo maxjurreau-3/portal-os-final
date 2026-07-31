@@ -1,4 +1,5 @@
 // src/runtime/unified-surface.jsx
+import WorldModelsPanel from './world-models-panel.jsx';
 import React, { useMemo } from 'react';
 import {
   getAllRenderers,
