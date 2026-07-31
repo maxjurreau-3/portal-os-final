@@ -1,0 +1,71 @@
+name: Security / npm audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  npm-audit:
+    name: npm audit (report & gate)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit (save JSON)
+        run: |
+          # Run audit and always produce JSON (don't let npm exit non-zero kill the step)
+          npm audit --json > audit.json || true
+          cat audit.json | jq -r '.metadata.vulnerabilities // {}' || true
+        env:
+          CI: true
+
+      - name: Upload audit.json artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-json
+          path: audit.json
+
+      - name: Fail if high or critical vulnerabilities present
+        shell: bash
+        run: |
+          if [ ! -f audit.json ]; then
+            echo "audit.json not found; skipping severity check"
+            exit 0
+          fi
+          # Use jq to read counts; default to 0 if missing
+          HIGH=$(jq -r '.metadata.vulnerabilities.high // 0' audit.json)
+          CRITICAL=$(jq -r '.metadata.vulnerabilities.critical // 0' audit.json)
+          echo "Vulnerabilities summary: high=$HIGH critical=$CRITICAL"
+          if [ "${HIGH}" -gt 0 ] || [ "${CRITICAL}" -gt 0 ]; then
+            echo "Failing job: high or critical vulnerabilities detected"
+            exit 1
+          fi
+          echo "No high/critical vulnerabilities detected"
+        env:
+          CI: true
+
+      - name: Post summary to step output
+        if: always()
+        run: |
+          echo "Audit artifact uploaded as 'npm-audit-json' (download from Actions run artifacts)"
+          # Print small summary for logs
+          if [ -f audit.json ]; then
+            jq -r '.metadata.vulnerabilities // {}' audit.json || true
+          else
+            echo "No audit.json present"
+          fi
