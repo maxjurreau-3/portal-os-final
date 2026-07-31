@@ -31,3 +31,16 @@
     "node": ">=18"
   }
 }
+{
+  "private": true,
+  "workspaces": [
+    "portal-os",
+    "engines/*",
+    "substrate/*",
+    "world-models/*",
+    "quantum-suite/*",
+    "micro-apps/*",
+    "portal-apps/*",
+    "publishing/*"
+  ]
+}
