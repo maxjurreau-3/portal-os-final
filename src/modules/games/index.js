@@ -1,4 +1,5 @@
 // src/modules/games/index.js
+import React from 'react';
 import EventBus from '../../runtime/event-bus.js';
 import { uid, nowISO } from '../shared/utils.js';
 
@@ -24,11 +25,20 @@ export const renderer = {
   id: 'games',
   title: 'Games Engine',
   description: 'Game sessions and logic.',
-  content: (
-    <div>
-      <p>Games engine.</p>
-      <button onClick={() => startGameSession({ from: 'renderer' })}>Start Game Session</button>
-    </div>
+  content: React.createElement(
+    'div',
+    null,
+    React.createElement('p', null, 'Games engine.'),
+    React.createElement(
+      'button',
+      {
+        onClick: () => {
+          const s = startGameSession({ from: 'renderer' });
+          EventBus.emit('notify', `Game session started: ${s.id}`);
+        }
+      },
+      'Start Game Session'
+    )
   )
 };
 
