@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Not found — Portal‑OS‑v3</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script>
+      // SPA fallback: fetch index.html and render it so client-side routing can handle the path.
+      (async function () {
+        try {
+          const res = await fetch('/index.html');
+          const html = await res.text();
+          document.open();
+          document.write(html);
+          document.close();
+        } catch (e) {
+          document.body.innerHTML = '<h1>404 — Not found</h1><p>Unable to load the application.</p>';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Redirecting...</h1>
+  </body>
+</html>
