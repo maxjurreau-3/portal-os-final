@@ -1,4 +1,5 @@
 // src/modules/sim/index.js
+import React from 'react';
 import EventBus from '../../runtime/event-bus.js';
 import { opRun } from '../operators/index.js';
 import { uid, nowISO } from '../shared/utils.js';
@@ -46,23 +47,30 @@ export const simGetActiveSpace = getActiveSpace;
 export const simSwitchSpace = activateSpace;
 export const simRunOperatorInActive = runOperatorInActive;
 
-// Renderer object for SIM
+// Renderer object for SIM (use createElement to avoid JSX in .js)
 export const renderer = {
   id: 'sim',
   title: 'SIM Core',
   description: 'Simulation architecture and cognitive space.',
-  content: (
-    <div>
-      <p>SIM engine ready.</p>
-      <button
-        onClick={() => {
-          const s = createSimSpace({ createdBy: 'renderer' });
-          activateSpace(s.id);
-        }}
-      >
-        Create & Activate Space
-      </button>
-    </div>
+  content: React.createElement(
+    'div',
+    null,
+    React.createElement('p', null, 'SIM engine ready.'),
+    React.createElement(
+      'button',
+      {
+        onClick: () => {
+          try {
+            const s = createSimSpace({ createdBy: 'renderer' });
+            activateSpace(s.id);
+            EventBus.emit('notify', `Space created and activated: ${s.id}`);
+          } catch (e) {
+            EventBus.emit('notify', `SIM action failed: ${e.message}`);
+          }
+        }
+      },
+      'Create & Activate Space'
+    )
   )
 };
 
