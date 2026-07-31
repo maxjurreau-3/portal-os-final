@@ -1,0 +1,15 @@
+{
+  "name": "@umbrella/unified-field",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unified field protocol and utilities.",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"no tests\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
