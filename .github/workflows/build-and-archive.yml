@@ -1,0 +1,46 @@
+name: Build and Archive
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-archive:
+    name: Build site and upload ZIP artifact
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (production)
+        run: npm run build
+
+      - name: Create portal-os-v3.zip (exclude node_modules and .git)
+        run: |
+          sudo apt-get update -y >/dev/null || true
+          sudo apt-get install -y zip >/dev/null || true
+          zip -r portal-os-v3.zip . -x "node_modules/*" ".git/*" "portal-os-v3.zip" ".github/workflows/build-and-archive.yml"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portal-os-v3
+          path: portal-os-v3.zip
