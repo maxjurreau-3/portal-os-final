@@ -1,4 +1,5 @@
 // src/modules/identity-physics/index.js
+import React from 'react';
 import EventBus from '../../runtime/event-bus.js';
 import { uid, nowISO } from '../shared/utils.js';
 
@@ -26,18 +27,25 @@ export const renderer = {
   id: 'identity-physics',
   title: 'Identity Physics',
   description: 'Defines and activates identity physics for agents.',
-  content: (
-    <div>
-      <p>Identity engine.</p>
-      <button
-        onClick={() => {
-          const i = defineIdentity({ role: 'agent' });
-          activateIdentity(i.id);
-        }}
-      >
-        Define & Activate Identity
-      </button>
-    </div>
+  content: React.createElement(
+    'div',
+    null,
+    React.createElement('p', null, 'Identity engine.'),
+    React.createElement(
+      'button',
+      {
+        onClick: () => {
+          try {
+            const i = defineIdentity({ role: 'agent' });
+            activateIdentity(i.id);
+            EventBus.emit('notify', `Identity defined and activated: ${i.id}`);
+          } catch (e) {
+            EventBus.emit('notify', `Identity error: ${e.message}`);
+          }
+        }
+      },
+      'Define & Activate Identity'
+    )
   )
 };
 
