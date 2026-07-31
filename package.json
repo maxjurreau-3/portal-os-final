@@ -2,6 +2,7 @@
   "name": "portal-os-v3",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Portal‑OS‑v3 — multi-engine, event-driven operating surface built with Vite + React",
   "scripts": {
     "dev": "vite",
@@ -13,7 +14,14 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@umbrella/sim-engine": "workspace:*",
+    "@umbrella/operators-engine": "workspace:*",
+    "@umbrella/identity-physics-engine": "workspace:*",
+    "@umbrella/xr-engine": "workspace:*",
+    "@umbrella/games-engine": "workspace:*",
+    "@umbrella/canvas-engine": "workspace:*",
+    "@umbrella/publishing-engine": "workspace:*"
   },
   "devDependencies": {
     "vite": "^5.0.0",
