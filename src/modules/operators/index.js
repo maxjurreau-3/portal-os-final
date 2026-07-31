@@ -1,4 +1,5 @@
 // src/modules/operators/index.js
+import React from 'react';
 import EventBus from '../../runtime/event-bus.js';
 
 const registry = new Map();
@@ -33,16 +34,16 @@ export const operatorsOpRegister = opRegister;
 export const operatorsOpRun = opRun;
 export const operatorsOpList = opList;
 
-// Renderer object for the operators module
+// Renderer object for the operators module (no JSX)
 export const renderer = {
   id: 'operators',
   title: 'Operators Engine',
   description: 'Register and execute domain operators.',
-  content: (
-    <div>
-      <p>Operators engine ready.</p>
-      <small>Use opRegister(opName, fn) and opRun(opName).</small>
-    </div>
+  content: React.createElement(
+    'div',
+    null,
+    React.createElement('p', null, 'Operators engine ready.'),
+    React.createElement('small', null, 'Use opRegister(opName, fn) and opRun(opName).')
   )
 };
 
