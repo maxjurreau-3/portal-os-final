@@ -1,0 +1,12 @@
+{
+  "name": "@umbrella/xr-world",
+  "version": "0.1.0",
+  "private": true,
+  "description": "XR World model binding XR scenes to substrate coherence, awareness and unified-field.",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
