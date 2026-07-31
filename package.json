@@ -1,0 +1,25 @@
+{
+  "name": "portal-os-v3",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portal‑OS‑v3 — multi-engine, event-driven operating surface built with Vite + React",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "echo \"Add ESLint config\" && exit 0",
+    "format": "echo \"Add Prettier config\" && exit 0",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
