@@ -2,15 +2,8 @@
   "name": "@umbrella/coherence-engine",
   "version": "0.1.0",
   "private": true,
-  "description": "Coherence engine primitives for the substrate layer.",
   "type": "module",
   "main": "index.js",
-  "keywords": ["substrate", "coherence", "engine"],
-  "license": "MIT",
-  "scripts": {
-    "test": "node --version && echo \"no tests\""
-  },
-  "engines": {
-    "node": ">=18"
-  }
+  "description": "Coherence field primitives (stub)",
+  "engines": { "node": ">=18" }
 }

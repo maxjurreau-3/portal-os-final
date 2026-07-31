@@ -1,9 +1,9 @@
 {
-  "name": "@umbrella/unified-field",
+  "name": "@umbrella/quantum-identity",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "main": "index.js",
-  "description": "Unified field protocols (stub)",
+  "description": "Quantum identity (stub)",
   "engines": { "node": ">=18" }
 }

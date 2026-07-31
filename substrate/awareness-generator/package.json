@@ -2,14 +2,8 @@
   "name": "@umbrella/awareness-generator",
   "version": "0.1.0",
   "private": true,
-  "description": "Awareness stream generator for the substrate.",
   "type": "module",
   "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "test": "echo \"no tests\""
-  },
-  "engines": {
-    "node": ">=18"
-  }
+  "description": "Awareness stream producer (stub)",
+  "engines": { "node": ">=18" }
 }
