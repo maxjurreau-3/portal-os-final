@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^19.3.0",
     "@umbrella/sim-engine": "workspace:*",
     "@umbrella/operators-engine": "workspace:*",
     "@umbrella/identity-physics-engine": "workspace:*",
